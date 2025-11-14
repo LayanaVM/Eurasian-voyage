@@ -18,8 +18,17 @@ html, body {
 
 body {
     font-family: 'Montserrat', Arial, sans-serif;
-    background: #072027;
+    background: linear-gradient(180deg, 
+        #051E26 0%, 
+        #062A35 15%, 
+        #073642 30%, 
+        #08424F 50%, 
+        #073642 70%,
+        #062A35 85%,
+        #051E26 100%
+    );
     color: white;
+    background-attachment: fixed;
 }
 
 /* NAVBAR */
@@ -37,9 +46,10 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(7, 32, 39, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(5, 30, 38, 0.85) 0%, rgba(6, 42, 53, 0.85) 100%);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(74, 159, 184, 0.1);
 }
 
 .logo img {
@@ -66,7 +76,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #D4AF37;
+    color: #ffffff;
 }
 
 .nav-links a::after {
@@ -76,7 +86,7 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: #D4AF37;
+    background: #ffffff;
     transition: width 0.3s ease;
 }
 
@@ -122,9 +132,9 @@ body {
     height: 100%;
     background: linear-gradient(
         to bottom,
-        rgba(7, 32, 39, 0) 0%,
-        rgba(7, 32, 39, 0.4) 60%,
-        rgba(7, 32, 39, 1) 100%
+        rgba(5, 30, 38, 0.3) 0%,
+        rgba(5, 30, 38, 0.7) 60%,
+        rgba(5, 30, 38, 0.95) 100%
     );
     z-index: 0;
 }
@@ -150,6 +160,7 @@ body {
     font-weight: 800;
     text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
     letter-spacing: -1px;
+    color: #ffffff;
 }
 
 .hero-content p {
@@ -176,8 +187,8 @@ body {
 .scroll-indicator::before {
     content: '↓';
     font-size: 30px;
-    color: #D4AF37;
-    opacity: 0.8;
+    color: #4A9FB8;
+    opacity: 0.9;
 }
 
 @keyframes bounce {
@@ -195,19 +206,24 @@ body {
 /* ABOUT */
 .about {
     width: 100%;
-    padding: 100px 20px;
+    padding: 150px 20px;
     display: flex;
     justify-content: center;
-    background: #072027;
+    background: transparent;
     position: relative;
 }
 
 .about-content {
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.8s ease;
+    padding: 40px;
+    background: rgba(7, 54, 66, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 159, 184, 0.1);
 }
 
 .about-content.reveal {
@@ -219,7 +235,10 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 5vw, 42px);
     margin-bottom: 20px;
-    color: #D4AF37;
+    background: linear-gradient(135deg, #6CB8D0 0%, #8FCDDE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .about p {
@@ -230,10 +249,11 @@ body {
 
 /* DESTINATIONS */
 .dest-section {
-    padding: 100px 6vw;
+    padding: 150px 6vw;
     display: flex;
     flex-direction: column;
-    gap: 120px;
+    gap: 150px;
+    background: transparent;
 }
 
 .dest-block {
@@ -264,35 +284,41 @@ body {
     max-width: 550px;
     height: 380px;
     object-fit: cover;
-    border-radius: 28px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
     transition: all 0.5s ease;
     transform-style: preserve-3d;
+    border: 1px solid rgba(74, 159, 184, 0.1);
 }
 
 .dest-img img:hover {
-    transform: scale(1.05) rotateY(5deg);
-    box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0 35px 70px rgba(74, 159, 184, 0.3);
 }
 
 .dest-text {
     max-width: 500px;
     position: relative;
+    padding: 30px;
+    background: rgba(7, 54, 66, 0.25);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 159, 184, 0.1);
 }
 
 .dest-number {
     position: absolute;
-    top: -70px;
-    left: -5px;
+    top: -50px;
+    left: 10px;
     font-size: 100px;
     font-weight: 800;
-    color: rgba(212, 175, 55, 0.08);
+    color: rgba(74, 159, 184, 0.12);
     font-family: 'Playfair Display', serif;
     transition: all 0.5s ease;
 }
 
 .dest-block.reveal .dest-number {
-    color: rgba(212, 175, 55, 0.12);
+    color: rgba(74, 159, 184, 0.2);
 }
 
 .dest-text h3 {
@@ -300,7 +326,10 @@ body {
     font-size: clamp(26px, 4vw, 40px);
     font-weight: 700;
     margin-bottom: 15px;
-    color: #D4AF37;
+    background: linear-gradient(135deg, #4A9FB8 0%, #6CB8D0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     position: relative;
     display: inline-block;
 }
@@ -312,7 +341,7 @@ body {
     left: 0;
     width: 0;
     height: 3px;
-    background: #D4AF37;
+    background: linear-gradient(90deg, #4A9FB8 0%, #6CB8D0 100%);
     transition: width 0.6s ease;
 }
 
@@ -328,9 +357,9 @@ body {
 
 /* CONTACT FOOTER SECTION */
 .ev-footer {
-    padding: 80px 6vw;
-    background: #072027;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 150px 6vw 80px;
+    background: transparent;
+    border-top: none;
     position: relative;
     opacity: 0;
     transform: translateY(50px);
@@ -355,7 +384,7 @@ body {
 .ev-col h2 {
     font-family: 'Playfair Display', serif;
     font-size: 32px;
-    color: #D4AF37;
+    color: #ffffff;
     margin-bottom: 15px;
 }
 
@@ -363,7 +392,7 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 22px;
     margin-bottom: 15px;
-    color: #D4AF37;
+    color: #ffffff;
 }
 
 .ev-col p {
@@ -403,7 +432,7 @@ body {
 
 .ev-col a:hover {
     opacity: 1;
-    color: #D4AF37;
+    color: #ffffff;
     transform: translateX(5px);
 }
 
@@ -435,21 +464,23 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: rgba(212, 175, 55, 0.1);
+    background: linear-gradient(135deg, rgba(74, 159, 184, 0.2) 0%, rgba(108, 184, 208, 0.2) 100%);
 }
 
 .ev-socials a:hover {
-    background: rgba(212, 175, 55, 0.2);
-    color: #D4AF37;
+    background: linear-gradient(135deg, rgba(74, 159, 184, 0.4) 0%, rgba(108, 184, 208, 0.4) 100%);
+    color: #ffffff;
     transform: translateY(-3px);
 }
 
 /* FINAL FOOTER */
 footer {
     text-align: center;
-    padding: 20px;
-    background: #041a1f;
-    color: rgba(255, 255, 255, 0.7);
+    padding: 30px 20px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    border-top: 1px solid rgba(74, 159, 184, 0.15);
 }
 
 /* RESPONSIVE BREAKPOINTS */
@@ -474,7 +505,15 @@ footer {
     }
     
     .dest-img img:hover {
-        transform: scale(1.05);
+        transform: scale(1.03) translateY(-5px);
+    }
+    
+    .dest-text {
+        padding: 25px;
+    }
+    
+    .about-content {
+        padding: 30px 20px;
     }
 }
 
