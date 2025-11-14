@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #faf7f2;
+    color: #08300f;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #faf7f2;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo img {
+    height: 70px;
+}
+
+.nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0a3d16;
+    font-weight: 600;
+}
+
+.socials a {
+    margin-left: 12px;
+    color: #0a3d16;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* HERO */
+.hero {
+    background: url('images/hero.jpg') center/cover no-repeat;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 800;
+}
+
+.hero-content p {
+    font-size: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background: #08300f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+/* ABOUT SECTION */
+.about {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.about h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+
+/* DESTINATION SECTION */
+.dest-section {
+    background: #06202b;
+    padding: 80px 40px;
+    color: white;
+}
+
+.dest-block {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 100px;
+}
+
+.dest-block.reverse {
+    flex-direction: row-reverse;
+}
+
+.dest-img img {
+    width: 500px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+.dest-text {
+    max-width: 550px;
+}
+
+.dest-number {
+    font-size: 80px;
+    opacity: 0.08;
+    font-weight: 900;
+    position: relative;
+    top: -20px;
+}
+
+.dest-text h3 {
+    font-size: 32px;
+    margin-top: -50px;
+}
+
+.dest-text p {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+
+/* CONTACT */
+.contact {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.contact-links .btn {
+    margin: 10px;
+}
+
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #08300f;
+    color: white;
+    margin-top: 40px;
+}
+
