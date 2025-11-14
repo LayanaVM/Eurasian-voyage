@@ -81,52 +81,77 @@ body {
 
 
 /* DESTINATION SECTION */
+/* DESTINATION SECTION */
+/* DESTINATION SECTION */
+/* DESTINATION SECTION */
 .dest-section {
-    background: #06202b;
-    padding: 80px 40px;
-    color: white;
+    width: 100%;
+    padding: 100px 60px; /* Reduced padding — pushes content to edges */
+    display: flex;
+    flex-direction: column;
+    gap: 140px;
+    box-sizing: border-box;
+    background: #072027;
 }
 
+/* EACH DESTINATION BLOCK */
 .dest-block {
     display: flex;
     align-items: center;
-    gap: 40px;
-    margin-bottom: 100px;
+    justify-content: space-between; /* Pushes text + image to opposite sides */
+    gap: 60px;
+    width: 100%;
 }
 
+/* ALTERNATE LAYOUT */
 .dest-block.reverse {
     flex-direction: row-reverse;
 }
 
+/* IMAGE STYLING */
 .dest-img img {
-    width: 500px;
-    height: 350px;
+    width: 600px;        /* Slightly larger + looks better when pushed to edges */
+    height: 430px;
     object-fit: cover;
-    border-radius: 25px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    border-radius: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 
+/* TEXT AREA */
 .dest-text {
-    max-width: 550px;
-}
-
-.dest-number {
-    font-size: 80px;
-    opacity: 0.08;
-    font-weight: 900;
+    max-width: 500px;
+    color: #ffffff;
     position: relative;
-    top: -20px;
+    padding: 0 20px; /* slight inset so text isn’t touching the screen edge */
 }
 
+/* BACK NUMBER */
+.dest-text .dest-number {
+    position: absolute;
+    top: -80px;
+    left: -10px;
+    font-size: 120px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+}
+
+/* TITLE */
 .dest-text h3 {
-    font-size: 32px;
-    margin-top: -50px;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
 }
 
+/* DESCRIPTION */
 .dest-text p {
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 18px;
+    line-height: 1.8;
+    opacity: 0.9;
 }
+
+
 
 
 /* CONTACT */
