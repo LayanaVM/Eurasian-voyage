@@ -37,22 +37,39 @@ body {
 
 /* HERO */
 .hero {
-    background: url('images/hero.jpg') center/cover no-repeat;
-    height: 90vh;
+    height: 100vh;
+    background: url('images/hero.jpg') center center / cover no-repeat fixed;
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: white;
+    align-items: center;
+    position: relative;
     text-align: center;
 }
 
+/* Dark overlay to make text readable */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* Text stays above overlay */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+
 .hero-content h1 {
-    font-size: 48px;
+    font-size: 64px;
     font-weight: 800;
 }
 
 .hero-content p {
-    font-size: 20px;
+    font-size: 22px;
+    margin-top: 10px;
+    opacity: 0.9;
 }
 
 .btn {
@@ -67,18 +84,36 @@ body {
 
 
 /* ABOUT SECTION */
+/* ABOUT SECTION — Styled like Destinations */
 .about {
-    text-align: center;
-    padding: 60px 20px;
+    width: 100%;
+    background: #072027;
+    padding: 120px 60px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.about-content {
     max-width: 800px;
-    margin: auto;
+    text-align: center; /* Centers both h2 and paragraph */
+    color: #ffffff;
 }
 
 .about h2 {
-    font-size: 32px;
+    font-size: 42px;
+    font-weight: 700;
     margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center; /* Force center */
 }
 
+.about p {
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.9;
+    color: #ffffff; /* White text */
+}
 
 /* DESTINATION SECTION */
 /* DESTINATION SECTION */
