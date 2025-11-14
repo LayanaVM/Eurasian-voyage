@@ -1,8 +1,13 @@
+html, body {
+    overflow-x: hidden;
+}
+
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #faf7f2;
-    color: #08300f;
+ background: #072027;
+     color: #08300f;
 }
 
 /* NAVBAR */
@@ -10,10 +15,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    background: #faf7f2;
-    position: sticky;
+    padding: 20px 40px;
+    background: transparent;
+    position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 999;
 }
 
@@ -21,40 +28,36 @@ body {
     height: 70px;
 }
 
-.nav-links a {
+.nav-links a,
+.socials a {
     margin: 0 15px;
     text-decoration: none;
-    color: #0a3d16;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .socials a {
     margin-left: 12px;
-    color: #0a3d16;
-    text-decoration: none;
-    font-weight: bold;
 }
 
 /* HERO */
 .hero {
     height: 100vh;
-    background: url('images/hero.jpg') center center / cover no-repeat fixed;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(7, 32, 39, 0) 0%,
+            rgba(7, 32, 39, 0.55) 60%,
+            rgba(7, 32, 39, 1) 100%
+        ),
+        url('images/hero.jpg') center center / cover no-repeat;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     text-align: center;
 }
 
-/* Dark overlay to make text readable */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-}
-
-/* Text stays above overlay */
 .hero-content {
     position: relative;
     z-index: 2;
@@ -82,21 +85,18 @@ body {
     margin-top: 10px;
 }
 
-
 /* ABOUT SECTION */
-/* ABOUT SECTION — Styled like Destinations */
 .about {
     width: 100%;
     background: #072027;
-    padding: 120px 60px;
-    box-sizing: border-box;
+    padding: 120px max(60px, 5vw);
     display: flex;
     justify-content: center;
 }
 
 .about-content {
     max-width: 800px;
-    text-align: center; /* Centers both h2 and paragraph */
+    text-align: center;
     color: #ffffff;
 }
 
@@ -105,62 +105,53 @@ body {
     font-weight: 700;
     margin-bottom: 20px;
     color: #ffffff;
-    text-align: center; /* Force center */
 }
 
 .about p {
     font-size: 18px;
     line-height: 1.7;
     opacity: 0.9;
-    color: #ffffff; /* White text */
+    color: #ffffff;
 }
 
 /* DESTINATION SECTION */
-/* DESTINATION SECTION */
-/* DESTINATION SECTION */
-/* DESTINATION SECTION */
 .dest-section {
     width: 100%;
-    padding: 100px 60px; /* Reduced padding — pushes content to edges */
+    background: #072027;
+    padding: 100px max(60px, 5vw);
     display: flex;
     flex-direction: column;
     gap: 140px;
     box-sizing: border-box;
-    background: #072027;
 }
 
-/* EACH DESTINATION BLOCK */
 .dest-block {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between; /* Pushes text + image to opposite sides */
     gap: 60px;
     width: 100%;
 }
 
-/* ALTERNATE LAYOUT */
 .dest-block.reverse {
     flex-direction: row-reverse;
 }
 
-/* IMAGE STYLING */
 .dest-img img {
-    width: 600px;        /* Slightly larger + looks better when pushed to edges */
+    width: 600px;
     height: 430px;
     object-fit: cover;
     border-radius: 32px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 
-/* TEXT AREA */
 .dest-text {
     max-width: 500px;
     color: #ffffff;
     position: relative;
-    padding: 0 20px; /* slight inset so text isn’t touching the screen edge */
+    padding: 0 20px;
 }
 
-/* BACK NUMBER */
 .dest-text .dest-number {
     position: absolute;
     top: -80px;
@@ -168,10 +159,8 @@ body {
     font-size: 120px;
     font-weight: 800;
     color: rgba(255, 255, 255, 0.06);
-    pointer-events: none;
 }
 
-/* TITLE */
 .dest-text h3 {
     font-size: 40px;
     font-weight: 700;
@@ -179,15 +168,11 @@ body {
     color: #ffffff;
 }
 
-/* DESCRIPTION */
 .dest-text p {
     font-size: 18px;
     line-height: 1.8;
     opacity: 0.9;
 }
-
-
-
 
 /* CONTACT */
 .contact {
@@ -199,7 +184,6 @@ body {
     margin: 10px;
 }
 
-
 /* FOOTER */
 footer {
     text-align: center;
@@ -208,4 +192,3 @@ footer {
     color: white;
     margin-top: 40px;
 }
-
