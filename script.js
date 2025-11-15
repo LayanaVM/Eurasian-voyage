@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== PERFORMANCE OPTIMIZATION VARIABLES =====
     let ticking = false;
     let lastScrollY = 0;
-    let lastScrollTime = Date.now();
     
     // ===== NAVBAR SCROLL EFFECT (OPTIMIZED) =====
     const navbar = document.querySelector('.navbar');
@@ -43,25 +42,65 @@ document.addEventListener('DOMContentLoaded', function() {
     // Throttled scroll event for navbar
     window.addEventListener('scroll', requestNavbarUpdate, { passive: true });
 
-    // ===== SMOOTH SCROLL FOR NAVIGATION LINKS =====
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
+    // ===== ENHANCED SMOOTH SCROLL FOR ALL NAVIGATION LINKS =====
+    const smoothScrollTo = (targetElement) => {
+        if (!targetElement) return;
+        
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        
+        // Use native smooth scroll with fallback
+        if ('scrollBehavior' in document.documentElement.style) {
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        } else {
+            // Fallback for browsers without smooth scroll support
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 800;
+            let startTime = null;
             
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                // Easing function (ease-in-out)
+                const ease = progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                
+                window.scrollTo(0, startPosition + distance * ease);
+                
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            
+            requestAnimationFrame(animation);
+        }
+    };
+
+    // Apply smooth scroll to ALL navigation links
+    const allNavLinks = document.querySelectorAll('a[href^="#"]');
+    
+    allNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
+            
+            // Skip if it's just "#" or empty
+            if (!targetId || targetId === '#') {
+                e.preventDefault();
+                return;
+            }
+            
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const navbarHeight = navbar.offsetHeight;
-                const targetPosition = targetSection.offsetTop - navbarHeight;
-                
-                // Use smooth scroll behavior
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                e.preventDefault();
+                smoothScrollTo(targetSection);
             }
         });
     });
@@ -69,19 +108,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== SMOOTH SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER) =====
     const revealElements = document.querySelectorAll('.about-content, .dest-block, .ev-footer');
     
-    // Use Intersection Observer for better performance (works great on mobile)
+    // Use Intersection Observer for better performance
     if ('IntersectionObserver' in window) {
         const observerOptions = {
-            threshold: isMobile ? 0.1 : 0.2,
-            rootMargin: isMobile ? '0px 0px -50px 0px' : '0px 0px -100px 0px'
+            threshold: isMobile ? 0.05 : 0.15,
+            rootMargin: isMobile ? '0px 0px -30px 0px' : '0px 0px -80px 0px'
         };
         
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('reveal');
-                    // Optional: unobserve after reveal for better performance
-                    // observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -140,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             block.addEventListener('mouseenter', function() {
                 if (img) {
-                    img.style.transform = 'scale(1.05) rotateY(5deg)';
+                    img.style.transform = 'scale(1.05)';
                 }
             });
             
@@ -171,8 +208,22 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset on touch end
             block.addEventListener('touchend', function() {
                 if (img) {
-                    img.style.transform = 'scale(1)';
+                    setTimeout(() => {
+                        img.style.transform = 'scale(1)';
+                    }, 100);
                 }
+            }, { passive: true });
+        });
+        
+        // Touch feedback for nav links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('touchstart', function() {
+                this.style.opacity = '0.6';
+            }, { passive: true });
+            
+            link.addEventListener('touchend', function() {
+                this.style.opacity = '1';
             }, { passive: true });
         });
         
@@ -182,61 +233,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== SMOOTH SCROLL FOR ANCHOR LINKS IN FOOTER =====
-    const footerLinks = document.querySelectorAll('.ev-col a[href^="#"]');
-    
-    footerLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const navbarHeight = navbar.offsetHeight;
-                    const targetPosition = target.offsetTop - navbarHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // ===== TOUCH-FRIENDLY NAV LINKS (MOBILE) =====
-    if (isMobile) {
-        navLinks.forEach(link => {
-            // Add visual feedback on touch
-            link.addEventListener('touchstart', function() {
-                this.style.transform = 'scale(0.95)';
-            }, { passive: true });
-            
-            link.addEventListener('touchend', function() {
-                this.style.transform = 'scale(1)';
-            }, { passive: true });
-        });
-    }
-
-    // ===== PREVENT SCROLL BOUNCE ON IOS (OPTIONAL) =====
-    if (isIOS) {
-        let scrollPos = 0;
-        
-        document.body.addEventListener('touchstart', function(e) {
-            scrollPos = window.scrollY;
-        }, { passive: true });
-        
-        document.body.addEventListener('touchmove', function(e) {
-            // Allow natural scrolling
-        }, { passive: true });
-    }
-
     // ===== DEBOUNCED WINDOW RESIZE HANDLER =====
     let resizeTimeout;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function() {
-            // Recalculate heights or positions if needed
             updateNavbar();
         }, 250);
     }, { passive: true });
@@ -249,64 +250,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         // Fallback for browsers that don't support native lazy loading
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                        }
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
             });
-        });
-        
-        document.querySelectorAll('img.lazy').forEach(img => {
-            imageObserver.observe(img);
-        });
+            
+            document.querySelectorAll('img.lazy').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
     }
 
-    // ===== SMOOTH SCROLL POLYFILL FOR OLDER BROWSERS =====
-    if (!('scrollBehavior' in document.documentElement.style)) {
-        // Simple smooth scroll polyfill
-        const smoothScroll = function(targetY, duration) {
-            const startY = window.scrollY;
-            const difference = targetY - startY;
-            const startTime = performance.now();
-            
-            const step = function(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                
-                // Easing function (ease-in-out)
-                const easing = progress < 0.5
-                    ? 4 * progress * progress * progress
-                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-                
-                window.scrollTo(0, startY + difference * easing);
-                
-                if (progress < 1) {
-                    requestAnimationFrame(step);
-                }
-            };
-            
-            requestAnimationFrame(step);
-        };
-        
-        // Override scroll behavior
-        window.scrollTo = (function(originalScrollTo) {
-            return function(x, y) {
-                if (typeof x === 'object' && x.behavior === 'smooth') {
-                    smoothScroll(x.top, 500);
-                } else {
-                    originalScrollTo.call(window, x, y);
-                }
-            };
-        })(window.scrollTo);
-    }
-
-    // ===== PRELOAD CRITICAL CONTENT =====
-    const preloadImages = document.querySelectorAll('link[rel="preload"][as="image"]');
-    
     // ===== REDUCE MOTION FOR ACCESSIBILITY =====
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     
@@ -322,15 +285,82 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // ===== MOBILE MENU FUNCTIONALITY (IF HAMBURGER ADDED LATER) =====
+    const createMobileMenu = () => {
+        if (window.innerWidth <= 600) {
+            const navLinksContainer = document.querySelector('.nav-links');
+            if (navLinksContainer && !document.querySelector('.mobile-menu-toggle')) {
+                // Could add hamburger menu functionality here if needed
+            }
+        }
+    };
+
     // ===== PERFORMANCE MONITORING (DEVELOPMENT) =====
     if (window.performance && window.performance.now) {
-        const loadTime = performance.now();
-        console.log(`🚀 Page loaded in ${loadTime.toFixed(2)}ms`);
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`🚀 Page loaded in ${loadTime.toFixed(2)}ms`);
+        });
     }
 
     // ===== INITIAL ANIMATIONS =====
     setTimeout(() => {
         document.body.classList.add('loaded');
     }, 100);
+
+    // ===== SCROLL TO TOP BUTTON (OPTIONAL - FOR MOBILE) =====
+    const createScrollToTop = () => {
+        const scrollBtn = document.createElement('button');
+        scrollBtn.className = 'scroll-to-top';
+        scrollBtn.innerHTML = '↑';
+        scrollBtn.setAttribute('aria-label', 'Scroll to top');
+        document.body.appendChild(scrollBtn);
+        
+        scrollBtn.addEventListener('click', () => {
+            smoothScrollTo(document.querySelector('#home') || document.body);
+        });
+        
+        let scrollBtnTicking = false;
+        window.addEventListener('scroll', () => {
+            if (!scrollBtnTicking) {
+                requestAnimationFrame(() => {
+                    if (window.scrollY > 500) {
+                        scrollBtn.classList.add('visible');
+                    } else {
+                        scrollBtn.classList.remove('visible');
+                    }
+                    scrollBtnTicking = false;
+                });
+                scrollBtnTicking = true;
+            }
+        }, { passive: true });
+    };
+    
+    // Create scroll to top button on mobile
+    if (isMobile) {
+        createScrollToTop();
+    }
+
+    // ===== PREVENT ZOOM ON DOUBLE TAP (iOS) =====
+    if (isIOS) {
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+    }
+
+    // ===== ADD VIEWPORT HEIGHT FIX FOR MOBILE BROWSERS =====
+    const setVH = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
 
 });

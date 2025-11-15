@@ -14,6 +14,7 @@ html {
 
 html, body {
     overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -29,6 +30,7 @@ body {
     );
     color: white;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
 /* NAVBAR */
@@ -46,7 +48,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: linear-gradient(135deg, rgba(38, 71, 82, 0.85) 0%, rgba(6, 42, 53, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(38, 71, 82, 0.95) 0%, rgba(6, 42, 53, 0.95) 100%);
     backdrop-filter: blur(20px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(74, 159, 184, 0.1);
@@ -55,6 +57,7 @@ body {
 .logo img {
     height: 100px;
     transition: all 0.3s ease;
+    display: block;
 }
 
 .navbar.scrolled .logo img {
@@ -64,6 +67,7 @@ body {
 .nav-links {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
 
 .nav-links a {
@@ -73,6 +77,7 @@ body {
     font-size: 18px;
     transition: all 0.3s ease;
     position: relative;
+    cursor: pointer;
 }
 
 .nav-links a:hover {
@@ -94,13 +99,10 @@ body {
     width: 100%;
 }
 
-.socials {
-    display: none;
-}
-
 /* HERO */
 .hero {
     height: 100vh;
+    min-height: 600px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -145,6 +147,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1.2s ease forwards 0.3s;
+    padding: 0 15px;
 }
 
 @keyframes fadeInUp {
@@ -161,6 +164,7 @@ body {
     text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
     letter-spacing: -1px;
     color: #ffffff;
+    margin-bottom: 15px;
 }
 
 .hero-content p {
@@ -279,30 +283,23 @@ body {
     perspective: 1000px;
     flex: 1;
     max-width: 550px;
+    width: 100%;
+    min-height: 380px;
 }
 
-/* Update the .dest-img img rule to ensure consistent sizing */
 .dest-img img {
     width: 100%;
     height: 380px;
     object-fit: cover;
-    object-position: center;  /* Added: ensures centered cropping */
+    object-position: center;
     border-radius: 20px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
     transition: all 0.5s ease;
     transform-style: preserve-3d;
     border: 1px solid rgba(74, 159, 184, 0.1);
-    display: block;  /* Added: removes any inline spacing issues */
+    display: block;
 }
 
-/* Ensure the container also has consistent dimensions */
-.dest-img {
-    perspective: 1000px;
-    flex: 1;
-    max-width: 550px;
-    width: 100%;  /* Added: ensures full width */
-    min-height: 380px;  /* Added: maintains container height */
-}
 .dest-text {
     flex: 1;
     max-width: 500px;
@@ -493,6 +490,40 @@ footer {
     border-top: 1px solid rgba(74, 159, 184, 0.15);
 }
 
+/* SCROLL TO TOP BUTTON */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4A9FB8 0%, #6CB8D0 100%);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(74, 159, 184, 0.4);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(74, 159, 184, 0.6);
+}
+
+.scroll-to-top:active {
+    transform: translateY(-2px);
+}
+
 /* ========================================
    MOBILE RESPONSIVE STYLES
 ======================================== */
@@ -528,6 +559,10 @@ footer {
         height: 320px;
     }
 
+    .dest-img {
+        min-height: 320px;
+    }
+
     .dest-text {
         padding: 25px;
     }
@@ -551,11 +586,12 @@ footer {
     .dest-block.reverse {
         flex-direction: column;
         text-align: center;
-        gap: 30px;
+        gap: 25px;
     }
 
     .dest-img {
         max-width: 100%;
+        min-height: 300px;
     }
 
     .dest-img img {
@@ -601,6 +637,10 @@ footer {
 
 /* Mobile landscape and tablets (768px) */
 @media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+
     .navbar {
         padding: 15px 25px;
     }
@@ -619,6 +659,14 @@ footer {
 
     .nav-links a {
         font-size: 14px;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .hero::before {
+        background-attachment: scroll;
     }
 
     .hero-content h1 {
@@ -640,6 +688,10 @@ footer {
 
     .about-content {
         padding: 25px 20px;
+    }
+
+    .dest-img {
+        min-height: 280px;
     }
 
     .dest-img img {
@@ -667,18 +719,23 @@ footer {
         height: 40px;
         font-size: 24px;
     }
+
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 20px;
+    }
 }
 
 /* Mobile devices (600px and below) */
 @media (max-width: 600px) {
-    body {
-        background-attachment: scroll;
-    }
-    
     .navbar {
         padding: 15px 20px;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 10px;
     }
 
     .logo {
@@ -700,12 +757,12 @@ footer {
         width: 100%;
         justify-content: center;
         gap: 12px;
-        font-size: 13px;
+        flex-wrap: wrap;
     }
 
     .nav-links a {
         font-size: 13px;
-        padding: 5px 8px;
+        padding: 5px 10px;
     }
 
     .nav-links a::after {
@@ -714,12 +771,9 @@ footer {
 
     .hero {
         padding: 0 15px;
-        height: 90vh;
-    }
-    
-    .hero::before {
-        background-attachment: scroll;
-        background-position: center;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        min-height: auto;
     }
 
     .hero-content h1 {
@@ -766,6 +820,10 @@ footer {
         gap: 20px;
     }
 
+    .dest-img {
+        min-height: 240px;
+    }
+
     .dest-img img {
         height: 240px;
         border-radius: 15px;
@@ -773,6 +831,7 @@ footer {
 
     .dest-text {
         padding: 20px 15px;
+        border-radius: 15px;
     }
 
     .dest-text h3 {
@@ -833,6 +892,14 @@ footer {
         padding: 20px 15px;
         font-size: 12px;
     }
+
+    .scroll-to-top {
+        width: 42px;
+        height: 42px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 18px;
+    }
 }
 
 /* Small mobile devices (480px and below) */
@@ -850,16 +917,17 @@ footer {
     }
 
     .nav-links {
-        gap: 10px;
+        gap: 8px;
     }
 
     .nav-links a {
         font-size: 12px;
-        padding: 4px 6px;
+        padding: 4px 8px;
     }
 
     .hero {
-        height: 85vh;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
     }
 
     .hero-content h1 {
@@ -892,6 +960,10 @@ footer {
     .dest-section {
         padding: 50px 15px;
         gap: 50px;
+    }
+
+    .dest-img {
+        min-height: 200px;
     }
 
     .dest-img img {
@@ -938,6 +1010,12 @@ footer {
         height: 35px;
         font-size: 18px;
     }
+
+    .scroll-to-top {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
 }
 
 /* Extra small devices (360px and below) */
@@ -952,7 +1030,7 @@ footer {
 
     .nav-links a {
         font-size: 11px;
-        padding: 3px 5px;
+        padding: 3px 6px;
     }
 
     .hero-content h1 {
@@ -961,6 +1039,10 @@ footer {
 
     .hero-content p {
         font-size: 12px;
+    }
+
+    .dest-img {
+        min-height: 180px;
     }
 
     .dest-img img {
@@ -982,5 +1064,86 @@ footer {
 
     .ev-col h3 {
         font-size: 16px;
+    }
+
+    .scroll-to-top {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        bottom: 12px;
+        right: 12px;
+    }
+}
+
+/* Landscape orientation optimization for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 80px 15px 40px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(24px, 5vh, 32px);
+    }
+
+    .hero-content p {
+        font-size: clamp(12px, 2vh, 16px);
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a:hover::after {
+        width: 0;
+    }
+
+    .dest-img img:hover {
+        transform: scale(1);
+    }
+
+    .ev-socials a:hover {
+        transform: none;
+    }
+    
+    /* Make touch targets larger */
+    .nav-links a {
+        padding: 8px 12px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .scroll-to-top {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero::before {
+        transform: none !important;
     }
 }
