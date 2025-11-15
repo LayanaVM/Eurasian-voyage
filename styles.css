@@ -10,11 +10,14 @@
 
 html {
     scroll-behavior: smooth;
+    background: #051E26;
+    min-height: 100%;
 }
 
 html, body {
     overflow-x: hidden;
     width: 100%;
+    background: #051E26;
 }
 
 body {
@@ -31,6 +34,19 @@ body {
     color: white;
     background-attachment: fixed;
     min-height: 100vh;
+    position: relative;
+}
+
+/* Fix white gaps on fast scroll */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #051E26;
+    z-index: -9999;
 }
 
 /* NAVBAR */
@@ -110,19 +126,21 @@ body {
     text-align: center;
     padding: 0 20px;
     overflow: hidden;
+    background: #051E26;
 }
 
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -50px;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
     background: url("images/hero.jpg") center/cover no-repeat fixed;
     transform: translateZ(0);
     will-change: transform;
     z-index: -1;
+    backface-visibility: hidden;
 }
 
 .hero::after {
@@ -291,28 +309,15 @@ body {
     width: 100%;
     height: 380px;
     object-fit: cover;
-<<<<<<< HEAD
     object-position: center;
-=======
->>>>>>> 3099685b395d3e1228625f4ccc49a1dafc4ce6bc
     border-radius: 20px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
     transition: all 0.5s ease;
     transform-style: preserve-3d;
     border: 1px solid rgba(74, 159, 184, 0.1);
-<<<<<<< HEAD
     display: block;
 }
 
-=======
-}
-
-.dest-img img:hover {
-    transform: scale(1.03) translateY(-5px);
-    box-shadow: 0 35px 70px rgba(74, 159, 184, 0.3);
-}
-
->>>>>>> 3099685b395d3e1228625f4ccc49a1dafc4ce6bc
 .dest-text {
     flex: 1;
     max-width: 500px;
@@ -599,31 +604,20 @@ footer {
     .dest-block.reverse {
         flex-direction: column;
         text-align: center;
-<<<<<<< HEAD
         gap: 25px;
-=======
-        gap: 40px;
-        align-items: stretch;
->>>>>>> 3099685b395d3e1228625f4ccc49a1dafc4ce6bc
     }
 
     .dest-img {
         max-width: 100%;
-<<<<<<< HEAD
         min-height: 300px;
-=======
-        width: 100%;
->>>>>>> 3099685b395d3e1228625f4ccc49a1dafc4ce6bc
     }
 
     .dest-img img {
         height: 300px;
-        width: 100%;
     }
 
     .dest-text {
         max-width: 100%;
-        width: 100%;
         padding: 25px;
     }
 
@@ -665,6 +659,12 @@ footer {
         background-attachment: scroll;
     }
 
+    .hero::before {
+        position: absolute;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+
     .navbar {
         padding: 15px 25px;
     }
@@ -687,10 +687,6 @@ footer {
 
     .hero {
         min-height: 500px;
-    }
-
-    .hero::before {
-        background-attachment: scroll;
     }
 
     .hero-content h1 {
@@ -755,6 +751,19 @@ footer {
 
 /* Mobile devices (600px and below) */
 @media (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    .hero::before {
+        position: absolute;
+        background-attachment: scroll;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
     .navbar {
         padding: 15px 20px;
         flex-wrap: wrap;
@@ -841,11 +850,7 @@ footer {
     }
 
     .dest-block {
-        gap: 30px;
-    }
-
-    .dest-img {
-        width: 100%;
+        gap: 20px;
     }
 
     .dest-img {
@@ -853,18 +858,13 @@ footer {
     }
 
     .dest-img img {
-        height: 280px;
-        width: 100%;
+        height: 240px;
         border-radius: 15px;
     }
 
     .dest-text {
         padding: 20px 15px;
-<<<<<<< HEAD
         border-radius: 15px;
-=======
-        width: 100%;
->>>>>>> 3099685b395d3e1228625f4ccc49a1dafc4ce6bc
     }
 
     .dest-text h3 {
@@ -996,23 +996,17 @@ footer {
     }
 
     .dest-img {
-<<<<<<< HEAD
         min-height: 200px;
-=======
-        width: 100%;
->>>>>>> 3099685b395d3e1228625f4ccc49a1dafc4ce6bc
     }
 
     .dest-img img {
-        height: 240px;
-        width: 100%;
+        height: 200px;
         border-radius: 12px;
     }
 
     .dest-text {
         padding: 18px 12px;
         border-radius: 15px;
-        width: 100%;
     }
 
     .dest-text h3 {
@@ -1081,16 +1075,11 @@ footer {
     }
 
     .dest-img {
-<<<<<<< HEAD
         min-height: 180px;
-=======
-        width: 100%;
->>>>>>> 3099685b395d3e1228625f4ccc49a1dafc4ce6bc
     }
 
     .dest-img img {
-        height: 200px;
-        width: 100%;
+        height: 180px;
     }
 
     .dest-text h3 {
@@ -1125,6 +1114,10 @@ footer {
         height: auto;
         min-height: 100vh;
         padding: 80px 15px 40px;
+    }
+
+    .hero::before {
+        background-attachment: scroll;
     }
 
     .hero-content h1 {
@@ -1185,9 +1178,5 @@ footer {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
-    }
-
-    .hero::before {
-        transform: none !important;
     }
 }
