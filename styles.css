@@ -281,22 +281,28 @@ body {
     max-width: 550px;
 }
 
+/* Update the .dest-img img rule to ensure consistent sizing */
 .dest-img img {
     width: 100%;
     height: 380px;
     object-fit: cover;
+    object-position: center;  /* Added: ensures centered cropping */
     border-radius: 20px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
     transition: all 0.5s ease;
     transform-style: preserve-3d;
     border: 1px solid rgba(74, 159, 184, 0.1);
+    display: block;  /* Added: removes any inline spacing issues */
 }
 
-.dest-img img:hover {
-    transform: scale(1.03) translateY(-5px);
-    box-shadow: 0 35px 70px rgba(74, 159, 184, 0.3);
+/* Ensure the container also has consistent dimensions */
+.dest-img {
+    perspective: 1000px;
+    flex: 1;
+    max-width: 550px;
+    width: 100%;  /* Added: ensures full width */
+    min-height: 380px;  /* Added: maintains container height */
 }
-
 .dest-text {
     flex: 1;
     max-width: 500px;
