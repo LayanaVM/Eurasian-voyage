@@ -671,6 +671,10 @@ footer {
 
 /* Mobile devices (600px and below) */
 @media (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+    }
+    
     .navbar {
         padding: 15px 20px;
         flex-wrap: wrap;
