@@ -129,20 +129,24 @@ body::before {
     background: #051E26;
 }
 
-.hero::before {
-    content: '';
+.hero-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-   
-    z-index: -1;
+    z-index: 1;
+    display: block;
 }
 
-.hero::after {
-    content: '';
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -154,12 +158,12 @@ body::before {
         rgba(5, 30, 38, 0.7) 60%,
         rgba(5, 30, 38, 0.95) 100%
     );
-    z-index: 0;
+    z-index: 2;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1.2s ease forwards 0.3s;
@@ -795,16 +799,16 @@ footer {
         background-attachment: scroll;
     }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-    z-index: -1;
-}
+    .hero-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
     .navbar {
         padding: 15px 20px;
