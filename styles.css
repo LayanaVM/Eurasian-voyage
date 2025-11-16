@@ -623,7 +623,16 @@ footer {
         text-align: center;
         gap: 25px;
     }
-
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/hero.jpg") center/cover no-repeat;
+    z-index: -1;
+}
     .dest-img {
         max-width: 100%;
         min-height: 300px;
@@ -710,7 +719,16 @@ footer {
     .hero {
         min-height: 500px;
     }
-
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/hero.jpg") center/cover no-repeat;
+    z-index: -1;
+}
     .hero-content h1 {
         font-size: clamp(28px, 5vw, 50px);
     }
@@ -777,7 +795,7 @@ footer {
         background-attachment: scroll;
     }
 
-   .hero::before {
+  .hero::before {
     content: '';
     position: absolute;
     top: 0;
@@ -986,7 +1004,16 @@ footer {
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
     }
-
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/hero.jpg") center/cover no-repeat;
+    z-index: -1;
+}
     .hero-content h1 {
         font-size: clamp(22px, 8vw, 32px);
         letter-spacing: 0;
@@ -1093,7 +1120,16 @@ footer {
     .hero-content h1 {
         font-size: clamp(20px, 9vw, 28px);
     }
-
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/hero.jpg") center/cover no-repeat;
+    z-index: -1;
+}
     .hero-content p {
         font-size: 12px;
     }
