@@ -676,11 +676,16 @@ footer {
         background-attachment: scroll;
     }
 
-    .hero::before {
-        position: absolute;
-        background-attachment: scroll;
-        background-size: cover;
-    }
+   .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/hero.jpg") center/cover no-repeat;
+    z-index: -1;
+}
 
     .navbar {
         padding: 15px 25px;
@@ -1135,9 +1140,16 @@ footer {
         padding: 80px 15px 40px;
     }
 
-    .hero::before {
-        background-attachment: scroll;
-    }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/hero.jpg") center/cover no-repeat;
+    z-index: -1;
+}
 
     .hero-content h1 {
         font-size: clamp(24px, 5vh, 32px);
