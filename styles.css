@@ -129,24 +129,20 @@ body::before {
     background: #051E26;
 }
 
-.hero-image {
+.hero::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    display: block;
+    background: url("images/hero.jpg") center/cover no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
 }
 
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.hero-overlay {
+.hero::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -158,12 +154,12 @@ body::before {
         rgba(5, 30, 38, 0.7) 60%,
         rgba(5, 30, 38, 0.95) 100%
     );
-    z-index: 2;
+    z-index: 0;
 }
 
 .hero-content {
     position: relative;
-    z-index: 3;
+    z-index: 1;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1.2s ease forwards 0.3s;
@@ -627,16 +623,7 @@ footer {
         text-align: center;
         gap: 25px;
     }
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-    z-index: -1;
-}
+
     .dest-img {
         max-width: 100%;
         min-height: 300px;
@@ -689,16 +676,11 @@ footer {
         background-attachment: scroll;
     }
 
-   .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-    z-index: -1;
-}
+    .hero::before {
+        position: absolute;
+        background-attachment: scroll;
+        background-size: cover;
+    }
 
     .navbar {
         padding: 15px 25px;
@@ -723,16 +705,7 @@ footer {
     .hero {
         min-height: 500px;
     }
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-    z-index: -1;
-}
+
     .hero-content h1 {
         font-size: clamp(28px, 5vw, 50px);
     }
@@ -799,15 +772,13 @@ footer {
         background-attachment: scroll;
     }
 
-    .hero-image {
+    .hero::before {
+        position: absolute;
+        background-attachment: scroll;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-    }
-
-    .hero-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
     }
 
     .navbar {
@@ -1008,16 +979,7 @@ footer {
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
     }
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-    z-index: -1;
-}
+
     .hero-content h1 {
         font-size: clamp(22px, 8vw, 32px);
         letter-spacing: 0;
@@ -1124,16 +1086,7 @@ footer {
     .hero-content h1 {
         font-size: clamp(20px, 9vw, 28px);
     }
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-    z-index: -1;
-}
+
     .hero-content p {
         font-size: 12px;
     }
@@ -1180,16 +1133,9 @@ footer {
         padding: 80px 15px 40px;
     }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("images/hero.jpg") center/cover no-repeat;
-    z-index: -1;
-}
+    .hero::before {
+        background-attachment: scroll;
+    }
 
     .hero-content h1 {
         font-size: clamp(24px, 5vh, 32px);
