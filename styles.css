@@ -8,34 +8,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-    background: #051E26;
-    min-height: 100%;
-}
-
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-    background: #051E26;
-}
-
-body {
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: linear-gradient(180deg, 
-        #051E26 0%, 
-        #062A35 15%, 
-        #073642 30%, 
-        #08424F 50%, 
-        #073642 70%,
-        #062A35 85%,
-        #051E26 100%
-    );
-    color: white;
-    background-attachment: fixed;
-    min-height: 100vh;
-    position: relative;
-}
 
 /* Fix white gaps on fast scroll */
 body::before {
@@ -172,18 +144,35 @@ body::before {
     font-weight: 800;
     color: #ffffff;
     margin-bottom: 15px;
-    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 4px 8px rgba(26, 25, 25, 0.5);
 }
 
 .hero-content p {
     font-size: clamp(16px, 2.5vw, 22px);
     font-weight: 300;
+    color: #ffffff;
     margin-top: 15px;
     opacity: 0.95;
     letter-spacing: 2px;
-    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 2px 4px rgba(14, 13, 13, 0.787);
 }
-
+.hero-instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #173656 0%, #11242a 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(15px, 2vw, 18px);
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(19, 38, 44, 0.4);
+  position: relative;
+  overflow: hidden;
+}
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -235,6 +224,7 @@ body::before {
     max-width: 900px;
     text-align: center;
     opacity: 0;
+    color: white;
     transform: translateY(50px);
     transition: all 0.8s ease;
     padding: 40px;
@@ -253,6 +243,7 @@ body::before {
     font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 5vw, 42px);
     margin-bottom: 20px;
+    color: white;
     background: linear-gradient(135deg, #6CB8D0 0%, #8FCDDE 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -319,6 +310,7 @@ body::before {
     max-width: 500px;
     position: relative;
     padding: 30px;
+    color: white;
     background: rgba(7, 54, 66, 0.25);
     border-radius: 20px;
     backdrop-filter: blur(10px);
@@ -356,6 +348,7 @@ body::before {
 .dest-text h3::after {
     content: '';
     position: absolute;
+    color: white;
     bottom: -5px;
     left: 0;
     width: 0;
@@ -371,6 +364,7 @@ body::before {
 .dest-text p {
     opacity: 0.9;
     font-size: 17px;
+    color: white;
     line-height: 1.8;
 }
 
@@ -405,6 +399,7 @@ body::before {
             font-size: clamp(16px, 2vw, 20px);
             opacity: 0.85;
             margin-bottom: 60px;
+            color: white;
             font-weight: 300;
             letter-spacing: 1px;
         }
@@ -419,6 +414,7 @@ body::before {
         .package-card {
             position: relative;
             background: rgba(7, 54, 66, 0.3);
+            color: white;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(74, 159, 184, 0.2);
             border-radius: 20px;
@@ -490,6 +486,7 @@ body::before {
             font-weight: 700;
             margin-bottom: 20px;
             padding: 0 30px;
+            color: white;
             background: linear-gradient(135deg, #4A9FB8 0%, #6CB8D0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -534,6 +531,7 @@ body::before {
     padding: 150px 6vw 80px;
     background: transparent;
     border-top: none;
+    color: white;
     position: relative;
     opacity: 0;
     transform: translateY(50px);
