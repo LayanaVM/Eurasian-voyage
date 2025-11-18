@@ -20,6 +20,7 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#destinations">Destinations</a>
+            <a href="#packages">Packages</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -27,17 +28,16 @@
 
     <!-- HERO -->
     <section id="home" class="hero">
-    <picture class="hero-image">
-        <source srcset="images/hero.webp" type="image/webp">
-        <source srcset="images/hero.jpg" type="image/jpeg">
-        <img src="images/hero.jpg" alt="Eurasian landscape" loading="lazy">
-    </picture>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1>Explore the Best of Eurasia</h1>
-        <p>Travel, Reimagined. Rewards Beyond The Journey.</p>
-    </div>
-</section>
+        <picture class="hero-image">
+            <source srcset="images/hero.jpg" type="image/jpeg">
+        </picture>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Explore the Best of Eurasia</h1>
+            <p>Travel, Reimagined. Rewards Beyond The Journey.</p>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
 
 
     <!-- ABOUT -->
@@ -126,8 +126,8 @@
     </section>
 
 
-    <!-- PACKAGES SECTION (NEW) -->
-    <section id="packages" class="packages-section">
+    <!-- PACKAGES SECTION -->
+  <section id="packages" class="packages-section">
         <div class="packages-container">
             <h2 class="packages-title">Choose Your Journey</h2>
             <p class="packages-subtitle">Curated travel packages designed for every explorer</p>
@@ -136,7 +136,9 @@
                 
                 <!-- Package Card 1 -->
                 <div class="package-card">
-                    <div class="package-icon">✈️</div>
+                    <div class="package-icon">
+                        <img src="images/mmm.avif" alt="Airplane">
+                    </div>
                     <h3 class="package-name">3 Nights / 4 Days</h3>
                     <p class="package-desc">
                         Perfect for a quick escape. Experience the highlights of your chosen destination 
@@ -150,8 +152,9 @@
 
                 <!-- Package Card 2 -->
                 <div class="package-card featured">
-                    <div class="package-badge">Most Popular</div>
-                    <div class="package-icon">🗺️</div>
+                    <div class="package-icon">
+                        <img src="images/hhhh.jpg" alt="Map and compass">
+                    </div>
                     <h3 class="package-name">4 Nights / 5 Days</h3>
                     <p class="package-desc">
                         Our most sought-after package. Dive deeper into culture and nature with extended 
@@ -165,7 +168,9 @@
 
                 <!-- Package Card 3 -->
                 <div class="package-card">
-                    <div class="package-icon">🏔️</div>
+                    <div class="package-icon">
+                        <img src="images/uzbio.jpg" alt="Mountains">
+                    </div>
                     <h3 class="package-name">5 Nights / 6 Days</h3>
                     <p class="package-desc">
                         The ultimate immersive experience. Discover hidden gems, enjoy premium accommodations, 
@@ -180,7 +185,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- CONTACT -->
     <section id="contact" class="ev-footer">
@@ -202,15 +206,12 @@
                     <li><a href="#">Baku Old City</a></li>
                     <li><a href="#">Gergeti Trinity Church</a></li>
                     <li><a href="#">Charyn Canyon</a></li>
-                    
                 </ul>
             </div>
 
             <!-- CONTACT SECTION -->
             <div class="ev-col">
                 <h3>Contact Us</h3>
-                
-                
                 
                 <a href="tel:+994508706475" class="ev-contact-link">
                     <i class="fas fa-phone"></i> +994508706475
