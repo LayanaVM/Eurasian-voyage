@@ -49,13 +49,15 @@ body::before {
 }
 
 .logo img {
-    height: 128px;
+    height: 150px;
+    width: 200px;
     transition: all 0.3s ease;
     display: block;
 }
 
 .navbar.scrolled .logo img {
-    height: 60px;
+    height: 80px;
+    width: auto;
 }
 
 .nav-links {
