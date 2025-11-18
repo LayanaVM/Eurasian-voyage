@@ -198,22 +198,7 @@ body::before {
 }
 
 /* Scroll indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    animation: bounce 2s infinite;
-    transition: opacity 0.3s ease;
-}
 
-.scroll-indicator::before {
-    content: '↓';
-    font-size: 30px;
-    color: #4A9FB8;
-    opacity: 0.9;
-}
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
