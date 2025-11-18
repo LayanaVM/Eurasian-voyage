@@ -173,6 +173,23 @@ body::before {
   position: relative;
   overflow: hidden;
 }
+.hero-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #173656 0%, #11242a 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(15px, 2vw, 18px);
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(19, 38, 44, 0.4);
+  position: relative;
+  overflow: hidden;
+}
 @keyframes fadeInUp {
     to {
         opacity: 1;
