@@ -27,7 +27,7 @@ body::before {
     z-index: -9999;
 }
 
-/* NAVBAR */
+/* NAVBAR - OPTIMIZED FOR PERFORMANCE */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -37,8 +37,8 @@ body::before {
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition: all 0.4s ease;
     background: transparent;
+    will-change: background-color, box-shadow;
 }
 
 .navbar.scrolled {
@@ -46,20 +46,27 @@ body::before {
     backdrop-filter: blur(20px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(74, 159, 184, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* LOGO - FIXED RESPONSIVENESS */
+.logo {
+    z-index: 1002;
+    position: relative;
 }
 
 .logo img {
-    height: 150px;
-    width: 200px;
-    transition: all 0.3s ease;
+    max-height: 150px;
+    width: auto;
     display: block;
+    transition: max-height 0.3s ease;
 }
 
 .navbar.scrolled .logo img {
-    height: 80px;
-    width: auto;
+    max-height: 80px;
 }
 
+/* NAVIGATION LINKS - DESKTOP */
 .nav-links {
     display: flex;
     gap: 30px;
@@ -95,6 +102,40 @@ body::before {
     width: 100%;
 }
 
+/* HAMBURGER MENU - MOBILE ONLY */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1002;
+    background: none;
+    border: none;
+    padding: 8px;
+    position: relative;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* HERO - FIXED FOR MOBILE */
 .hero {
     height: 100vh;
@@ -108,6 +149,7 @@ body::before {
     overflow: hidden;
     background: #051E26 url("images/hero.jpg") center/cover no-repeat;
     background-attachment: scroll;
+    will-change: transform;
 }
 
 /* Gradient overlay */
@@ -212,6 +254,7 @@ body::before {
     border-radius: 20px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(74, 159, 184, 0.1);
+    will-change: opacity, transform;
 }
 
 .about-content.reveal {
@@ -522,6 +565,7 @@ body::before {
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.8s ease;
+    will-change: opacity, transform;
 }
 
 .ev-footer.reveal {
@@ -607,6 +651,26 @@ body::before {
     transform: translateX(5px);
 }
 
+.ev-location-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.ev-location-link:hover {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.ev-location-link i {
+    margin-right: 8px;
+}
+
 .ev-socials {
     margin-top: 20px;
     display: flex;
@@ -670,7 +734,7 @@ footer {
 }
 
 /* ========================================
-   MOBILE RESPONSIVE STYLES - FIXED
+   MOBILE RESPONSIVE STYLES - REFACTORED
 ======================================== */
 
 /* Tablets (1024px and below) */
@@ -680,11 +744,11 @@ footer {
     }
 
     .logo img {
-        height: 80px;
+        max-height: 110px;
     }
 
     .navbar.scrolled .logo img {
-        height: 50px;
+        max-height: clamp(75px, 10vw, 85px);
     }
 
     .nav-links {
@@ -729,42 +793,70 @@ footer {
     }
 }
 
-/* Mobile landscape and tablets (768px) */
+/* MOBILE HAMBURGER MENU - Below 768px */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .logo {
-        text-align: center;
-        width: 100%;
+        justify-content: space-between;
     }
 
     .logo img {
-        height: 70px;
-        margin: 0 auto;
+        max-height: 100px;
     }
 
     .navbar.scrolled .logo img {
-        height: 50px;
+        max-height: clamp(70px, 12vw, 80px);
+    }
+
+    /* Show hamburger, hide nav links by default */
+    .hamburger {
+        display: flex;
+        order: 3;
+    }
+
+    .logo {
+        order: 1;
     }
 
     .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(38, 71, 82, 0.98) 0%, rgba(6, 42, 53, 0.98) 100%);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
         justify-content: center;
-        width: 100%;
+        align-items: center;
+        gap: 30px;
+        padding: 40px 20px;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        order: 2;
+    }
+
+    .nav-links.active {
+        right: 0;
     }
 
     .nav-links a {
-        font-size: 14px;
+        font-size: 20px;
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+
+    .nav-links a::after {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .hero {
         min-height: 100vh;
-        padding-top: 140px;
+        padding-top: 100px;
     }
 
     .hero-content {
@@ -794,33 +886,42 @@ footer {
 @media (max-width: 600px) {
     .navbar {
         padding: 12px 15px;
-        flex-direction: column;
-        gap: 12px;
+        justify-content: center;
+        position: relative;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        order: 2;
     }
 
     .logo img {
-        height: 60px;
+        max-height: clamp(80px, 16vw, 100px);
     }
 
     .navbar.scrolled .logo img {
-        height: 45px;
+        max-height: clamp(65px, 14vw, 75px);
+    }
+
+    .hamburger {
+        position: absolute;
+        right: 15px;
+        order: 3;
     }
 
     .nav-links {
-        gap: 10px;
+        width: 250px;
+        gap: 25px;
     }
 
     .nav-links a {
-        font-size: 13px;
-        padding: 5px 8px;
-    }
-
-    .nav-links a::after {
-        display: none;
+        font-size: 18px;
     }
 
     .hero {
-        padding: 120px 15px 60px;
+        padding: 100px 15px 60px;
         min-height: 100vh;
         height: auto;
     }
@@ -830,13 +931,13 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: clamp(24px, 8vw, 36px);
+        font-size: clamp(26px, 8vw, 40px);
         margin-bottom: 15px;
         line-height: 1.2;
     }
 
     .hero-content p {
-        font-size: clamp(13px, 4vw, 16px);
+        font-size: clamp(14px, 4vw, 17px);
         margin-bottom: 20px;
         letter-spacing: 1px;
     }
@@ -846,7 +947,7 @@ footer {
         display: inline-flex;
         margin: 6px;
         padding: 12px 24px;
-        font-size: 14px;
+        font-size: 15px;
         gap: 8px;
     }
 
@@ -897,5 +998,38 @@ footer {
         bottom: 20px;
         right: 20px;
         font-size: 20px;
+    }
+}
+
+/* Extra small mobile devices (400px and below) */
+@media (max-width: 400px) {
+    .logo img {
+        max-height: clamp(70px, 18vw, 85px);
+    }
+
+    .navbar.scrolled .logo img {
+        max-height: clamp(55px, 15vw, 65px);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(22px, 9vw, 32px);
+    }
+
+    .hero-content p {
+        font-size: clamp(13px, 4.5vw, 16px);
+    }
+
+    .hero-instagram-btn,
+    .hero-whatsapp-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        gap: 6px;
+    }
+}
+
+/* Disable parallax on mobile to improve performance */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll !important;
     }
 }
