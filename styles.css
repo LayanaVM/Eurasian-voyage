@@ -41,11 +41,12 @@ body::before {
     will-change: background-color, box-shadow;
 }
 
+/* FIX: Semi-transparent gradient on scroll */
 .navbar.scrolled {
-    background: linear-gradient(135deg, rgba(38, 71, 82, 0.95) 0%, rgba(6, 42, 53, 0.95) 100%);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(74, 159, 184, 0.1);
+    background: linear-gradient(135deg, rgba(38, 71, 82, 0.85) 0%, rgba(6, 42, 53, 0.85) 100%);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(74, 159, 184, 0.15);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -55,11 +56,13 @@ body::before {
     position: relative;
 }
 
+/* FIX: Logo with aspect ratio maintenance */
 .logo img {
     max-height: 150px;
     width: auto;
     display: block;
     transition: max-height 0.3s ease;
+    aspect-ratio: auto;
 }
 
 .navbar.scrolled .logo img {
@@ -793,7 +796,7 @@ footer {
     }
 }
 
-/* MOBILE HAMBURGER MENU - Below 768px */
+/* FIX: MOBILE HAMBURGER MENU - Below 768px */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
@@ -818,6 +821,7 @@ footer {
         order: 1;
     }
 
+    /* FIX: Mobile navigation slide-in from right */
     .nav-links {
         position: fixed;
         top: 0;
@@ -837,6 +841,7 @@ footer {
         order: 2;
     }
 
+    /* Active state - slide in from right */
     .nav-links.active {
         right: 0;
     }
@@ -846,6 +851,14 @@ footer {
         width: 100%;
         text-align: center;
         padding: 12px 0;
+        color: rgba(255, 255, 255, 0.95);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        color: #ffffff;
     }
 
     .nav-links a::after {
@@ -876,6 +889,18 @@ footer {
 
     .hero-instagram-btn,
     .hero-whatsapp-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        gap: 6px;
+    }
+}
+
+/* Disable parallax on mobile to improve performance */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll !important;
+    }
+}.hero-whatsapp-btn {
         margin: 8px;
         padding: 14px 28px;
         font-size: 16px;
@@ -886,15 +911,14 @@ footer {
 @media (max-width: 600px) {
     .navbar {
         padding: 12px 15px;
-        justify-content: center;
-        position: relative;
+        justify-content: space-between;
     }
 
     .logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        order: 2;
+        position: relative;
+        left: auto;
+        transform: none;
+        order: 1;
     }
 
     .logo img {
@@ -906,8 +930,8 @@ footer {
     }
 
     .hamburger {
-        position: absolute;
-        right: 15px;
+        position: relative;
+        right: auto;
         order: 3;
     }
 
@@ -1020,16 +1044,3 @@ footer {
     }
 
     .hero-instagram-btn,
-    .hero-whatsapp-btn {
-        padding: 10px 20px;
-        font-size: 14px;
-        gap: 6px;
-    }
-}
-
-/* Disable parallax on mobile to improve performance */
-@media (max-width: 768px) {
-    .hero {
-        background-attachment: scroll !important;
-    }
-}
