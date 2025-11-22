@@ -760,7 +760,7 @@ footer {
 /* FIX: MOBILE HAMBURGER MENU - Below 768px */
 @media (max-width: 768px) {
     .navbar {
-        padding: 12px 20px;
+        padding: 20px 20px 8px 20px;
         background: linear-gradient(135deg, rgba(38, 71, 82, 0.90) 0%, rgba(6, 42, 53, 0.90) 100%);
         backdrop-filter: blur(15px);
     }
@@ -878,7 +878,7 @@ footer {
 /* Mobile devices (600px and below) */
 @media (max-width: 600px) {
     .navbar {
-        padding: 20px 15px 15px 15px;
+        padding: 20px 15px 4px 15px;
         justify-content: center;
         background: transparent !important;
         flex-wrap: wrap;
@@ -996,6 +996,10 @@ footer {
 
 /* Extra small mobile devices (400px and below) */
 @media (max-width: 400px) {
+    .navbar {
+        padding: 20px 15px 2px 15px;
+    }
+
     .logo img {
         max-height: clamp(120px, 30vw, 160px);
     }
