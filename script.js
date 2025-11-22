@@ -9,6 +9,38 @@ document.addEventListener('DOMContentLoaded', function() {
     let ticking = false;
     let lastScrollY = 0;
 
+    // ===== HAMBURGER MENU TOGGLE FIX =====
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger && navLinks) {
+        // Toggle menu when hamburger is clicked
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a nav link is clicked
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navLinks.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
+
+            if (!isClickInsideNav && !isClickOnHamburger && navLinks.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
+
     // ===== NAVBAR SCROLL EFFECT (OPTIMIZED) =====
     const navbar = document.querySelector('.navbar');
     const scrollIndicator = document.querySelector('.scroll-indicator');
@@ -102,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== SMOOTH SCROLL REVEAL (FIXED ANIMATION TIMING) =====
     const revealElements = document.querySelectorAll('.about-content, .dest-block, .package-card, .ev-footer');
 
-    // ⭐ NEW FIX — remove all animation delays (ensures equal loading)
+    // Remove all animation delays (ensures equal loading)
     document.querySelectorAll('.dest-block, .package-card').forEach(el => {
         el.style.animationDelay = '0s';
     });
@@ -151,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const scrolled = window.scrollY;
             if (scrolled < window.innerHeight) {
                 const parallaxSpeed = 0.5;
-                heroSection.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+                heroSection.style.transform = translateY(${scrolled * parallaxSpeed}px);
             }
             heroTicking = false;
         }
@@ -282,11 +314,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== FIX VH UNIT ON MOBILE =====
     const setVH = () => {
         const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        document.documentElement.style.setProperty('--vh', ${vh}px);
     };
 
     setVH();
     window.addEventListener('resize', setVH);
-    window.addEventListener('orientationchange', setVH);
+    window.addEventListAener('orientationchange', setVH);
 
 });
