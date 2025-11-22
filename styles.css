@@ -257,7 +257,7 @@ body::before {
 /* ABOUT */
 .about {
     width: 100%;
-    padding: 150px 20px;
+    padding: 150px 20px 80px 20px;
     display: flex;
     justify-content: center;
     background: transparent;
@@ -762,7 +762,7 @@ footer {
     .navbar {
         padding: 20px 20px 8px 20px;
         background: linear-gradient(135deg, rgba(38, 71, 82, 0.90) 0%, rgba(6, 42, 53, 0.90) 100%);
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(8px);
     }
 
     .logo {
