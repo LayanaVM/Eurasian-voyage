@@ -78,7 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!targetElement) return;
 
         const navbarHeight = navbar ? navbar.offsetHeight : 0;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        let targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        
+        // Add extra offset for mobile devices to account for navbar height
+        if (isMobile) {
+            targetPosition -= 20;
+        }
 
         if ('scrollBehavior' in document.documentElement.style) {
             window.scrollTo({
