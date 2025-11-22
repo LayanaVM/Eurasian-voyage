@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const scrolled = window.scrollY;
             if (scrolled < window.innerHeight) {
                 const parallaxSpeed = 0.5;
-                heroSection.style.transform = translateY(${scrolled * parallaxSpeed}px);
+                heroSection.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
             }
             heroTicking = false;
         }
@@ -314,11 +314,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== FIX VH UNIT ON MOBILE =====
     const setVH = () => {
         const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', ${vh}px);
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 
     setVH();
     window.addEventListener('resize', setVH);
-    window.addEventListAener('orientationchange', setVH);
+    window.addEventListener('orientationchange', setVH);
 
 });

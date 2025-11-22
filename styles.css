@@ -44,18 +44,11 @@ body::before {
 
 /* FIX: Semi-transparent gradient on scroll */
 .navbar.scrolled {
-<<<<<<< HEAD
     background: linear-gradient(135deg, rgba(38, 71, 82, 0.95) 0%, rgba(6, 42, 53, 0.95) 100%);
     backdrop-filter: blur(20px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(74, 159, 184, 0.1);
-=======
-    background: linear-gradient(135deg, rgba(38, 71, 82, 0.85) 0%, rgba(6, 42, 53, 0.85) 100%);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(74, 159, 184, 0.15);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
->>>>>>> 2cfe424686f6a154da6df5bf7d118ee0ce52dc84
 }
 
 /* LOGO - FIXED RESPONSIVENESS */
@@ -778,7 +771,6 @@ footer {
         transform: translateX(-50%);
     }
 
-<<<<<<< HEAD
     .logo img {
         max-height: 70px;
         transition: max-height 0.3s ease;
@@ -799,10 +791,7 @@ footer {
         display: block;
     }
 
-    /* Side panel navigation */
-=======
     /* FIX: Mobile navigation slide-in from right */
->>>>>>> 2cfe424686f6a154da6df5bf7d118ee0ce52dc84
     .nav-links {
         position: fixed;
         top: 0;
@@ -831,22 +820,17 @@ footer {
         font-size: 20px;
         width: 100%;
         text-align: center;
-<<<<<<< HEAD
         padding: 15px 0;
-        opacity: 0;
-        transform: translateX(30px);
-        transition: all 0.3s ease;
-=======
-        padding: 12px 0;
         color: rgba(255, 255, 255, 0.95);
         text-decoration: none;
         font-weight: 600;
+        opacity: 0;
+        transform: translateX(30px);
         transition: all 0.3s ease;
     }
 
     .nav-links a:hover {
         color: #ffffff;
->>>>>>> 2cfe424686f6a154da6df5bf7d118ee0ce52dc84
     }
 
     /* Animate links when menu opens */
@@ -889,29 +873,25 @@ footer {
     .hero {
         background-attachment: scroll !important;
     }
-}.hero-whatsapp-btn {
-        margin: 8px;
-        padding: 14px 28px;
-        font-size: 16px;
-    }
 }
 
 /* Mobile devices (600px and below) */
 @media (max-width: 600px) {
     .navbar {
-<<<<<<< HEAD
-        padding: 10px 15px;
-=======
-        padding: 12px 15px;
-        justify-content: space-between;
+        padding: 20px 15px 15px 15px;
+        justify-content: center;
+        background: transparent !important;
+        flex-wrap: wrap;
+        min-height: 80px;
     }
 
     .logo {
         position: relative;
         left: auto;
+        top: auto;
         transform: none;
-        order: 1;
->>>>>>> 2cfe424686f6a154da6df5bf7d118ee0ce52dc84
+        order: unset;
+        margin: 0 auto;
     }
 
     .logo img {
@@ -922,16 +902,27 @@ footer {
         max-height: 55px;
     }
 
-<<<<<<< HEAD
-    .hamburger span {
-        width: 22px;
-        height: 2px;
-=======
     .hamburger {
-        position: relative;
-        right: auto;
-        order: 3;
->>>>>>> 2cfe424686f6a154da6df5bf7d118ee0ce52dc84
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        order: unset;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: white;
+        display: block;
+        transition: all 0.3s ease;
     }
 
     .nav-links {
@@ -999,10 +990,6 @@ footer {
         height: 45px;
         bottom: 20px;
         right: 20px;
-<<<<<<< HEAD
-    }
-}
-=======
         font-size: 20px;
     }
 }
@@ -1026,4 +1013,8 @@ footer {
     }
 
     .hero-instagram-btn,
->>>>>>> 2cfe424686f6a154da6df5bf7d118ee0ce52dc84
+    .hero-whatsapp-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
