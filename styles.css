@@ -997,11 +997,11 @@ footer {
 /* Extra small mobile devices (400px and below) */
 @media (max-width: 400px) {
     .logo img {
-        max-height: clamp(70px, 18vw, 85px);
+        max-height: clamp(120px, 30vw, 160px);
     }
 
     .navbar.scrolled .logo img {
-        max-height: clamp(55px, 15vw, 65px);
+        max-height: clamp(80px, 20vw, 100px);
     }
 
     .hero-content h1 {
